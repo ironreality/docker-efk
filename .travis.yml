@@ -5,6 +5,10 @@ python: "2.7"
 # Use the new container infrastructure
 sudo: required
 
+env:
+  - distribution: ubuntu
+    version: xenial
+
 # Install ansible
 addons:
   apt:
