@@ -17,7 +17,6 @@ addons:
 
 install:
   # Install docker-compose
-  - pip uninstall docker-compose
   - pip uninstall docker-py
   - pip install docker-compose==1.9.0
 
