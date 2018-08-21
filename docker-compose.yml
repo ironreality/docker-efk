@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: elasticsearch
+    restart: always
+    ports:
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
+      - "127.0.0.1:9342:9342"
+    environment:
+      ES_JAVA_OPTS: "-Xmx512m -Xms256m"
+    networks:
+      - elk
+
+  kibana:
+    image: kibana
+    restart: always
+    ports:
+      - "127.0.0.1:5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+
+  elk:
+    driver: bridge
