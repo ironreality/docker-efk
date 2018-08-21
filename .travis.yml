@@ -17,8 +17,6 @@ addons:
 
 install:
   # Install docker-compose
-  - sudo pip uninstall docker-compose
-  - sudo pip uninstall docker
   - sudo pip install docker-compose==1.9.0
 
   # Check docker Python modules
