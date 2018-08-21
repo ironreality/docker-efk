@@ -12,6 +12,9 @@ addons:
     - python-pip
 
 install:
+  # Install docker-compose
+  - pip install docker-compose==1.9.0
+
   # Install ansible
   - pip install ansible
 
