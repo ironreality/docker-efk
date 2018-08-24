@@ -3,19 +3,32 @@ version: '2'
 services:
 
   elasticsearch:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
     restart: always
     ports:
       - "127.0.0.1:9200:9200"
-      - "127.0.0.1:9300:9300"
-      - "127.0.0.1:9342:9342"
     environment:
-      ES_JAVA_OPTS: "-Xmx512m -Xms256m"
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m"
     networks:
       - elk
 
+  fluentd:
+    build:
+      context: ./files/fluentd
+    restart: always
+    ports:
+      - "127.0.0.1:24224:24224"
+    volumes:
+      - "./files/fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+    environment:
+      FLUENTD_OPT: "-v"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
   kibana:
-    image: kibana
+    image: docker.elastic.co/kibana/kibana:6.4.0
     restart: always
     ports:
       - "127.0.0.1:5601:5601"
@@ -24,7 +37,27 @@ services:
     depends_on:
       - elasticsearch
 
-networks:
+  nginx:
+    build:
+      context: ./files/nginx
+      args:
+        - HTTP_AUTH_LOGIN
+        - HTTP_AUTH_PASS
+    restart: always
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - "./files/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./files/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
+        tag: "docker.nginx"
+    network_mode: "host"
+    depends_on:
+      - fluentd
 
+networks:
   elk:
     driver: bridge
