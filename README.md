@@ -11,7 +11,7 @@ The detailed projects' specification see in TODO file
 Requirements
 ------------
 
-- the role is tested on Linux Ubuntu 16.04
+- the role is tested on Linux Ubuntu 16.04 on my laptop & on Ubuntu 14.04 via TravisCI
 - Docker daemon is running & listening socket localhost:2375
 - Ansible version >= 2.6 installed
 - docker-compose == 1.9 (newer versions can work unstable with the Ansible docker-related modules)
