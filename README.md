@@ -1,31 +1,39 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Containerized Elasticsearch+Fluentd+Kibana+Nginx installation
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+A detailed description of the prerequisites you can find in .travis.yml
+
+- the role is tested on Linux Ubuntu 16.04
+- Docker daemon is running & listening socket localhost:2375
+- Ansible version >= 2.6 installed
+- docker-compose == 1.9 (newer versions could work unstable with the Ansible docker-related modules)
+- sudo sysctl -w vm.max_map_count = 262144 # to run Elasticsearch 6.4
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Kibana default HTTP auth credentials: admin / admin
 
-Dependencies
-------------
+To change the defaults you should define the next environment variables before the role launching:
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+HTTP_AUTH_LOGIN
+HTTP_AUTH_PASS
+
+
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+The testing playbook & inventory are placed in tests directory. So to run you should fire the command:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+ansible-playbook tests/test.yml -i tests/inventory --connection=local --become
+
 
 License
 -------
@@ -35,4 +43,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+The detailed projects' specification see in TODO file
