@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/ironreality/docker-efk.svg?branch=master)](https://travis-ci.com/ironreality/docker-efk)
+
 Role Name
 =========
 
