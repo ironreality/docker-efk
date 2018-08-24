@@ -1,0 +1,37 @@
+TODO
+
++ Весь проект выполнить на Docker
++ Docker контейнеры поднять с помощью Ansible, используя модули для Docker.
+
++ Должна быть идемпотентность.
++ Docker containers: Elasticsearch Kibana Fluentd Nginx
+
++ Выполнить разворачивание стека логирования Elasticsearch + Fluentd + Kibana.
+
++ Elasticsearch - standalone node
++ Kibana - standalone node
++ Fluentd - standalone node
+
+
+Конфигурация Fluentd должна быть следующей:
++ Fluentd слушает порт TCP 24224 и принимает на вход логи с контейнеров (в нашем
+случае лог nginx) через log-driver: fluentd и складывать в Elasticsearch в два индекса
+nginx-access-* и nginx-error-*
++ в nginx-access-* должны попадать логи с Docker stdout (404 ошибка, например, будет
+попадать в оба индекса, так как ngnix считает его и ошибкой - это нормальное
+поведение)
++ в nginx-error-* должны попадать логи с Docker stderr
+- добавить определение GeoIP
+
+
+Nginx:
++ лог nginx необходимо привести к виду:
+log_format main '[$time_local] "$host" "$remote_addr" "$status" "$request_time"
+"$upstream_response_time" "$bytes_sent" "$request" "$http_referer" "$http_user_agent"';
+
++ страницы со следующими локейшенами:
+  + локейшн /test/200 - должен отдать 200-ю страницу с текстом " 200 OK "
+  + локейшн /test/500 - должен отдать 500-ку
+  + локейшн / - должен отдавать страницу Kibana c HTTP Basic Authentication. Login и Password должны передаваться в докер через ENV.
+
+- Написать инструкцию по запуску.

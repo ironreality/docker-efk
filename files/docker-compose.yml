@@ -14,12 +14,12 @@ services:
 
   fluentd:
     build:
-      context: ./files/fluentd
+      context: ./fluentd
     restart: always
     ports:
       - "127.0.0.1:24224:24224"
     volumes:
-      - "./files/fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+      - "./fluentd/fluent.conf:/fluentd/etc/fluent.conf"
     environment:
       FLUENTD_OPT: "-v"
     networks:
@@ -39,7 +39,7 @@ services:
 
   nginx:
     build:
-      context: ./files/nginx
+      context: ./nginx
       args:
         - HTTP_AUTH_LOGIN
         - HTTP_AUTH_PASS
@@ -47,8 +47,8 @@ services:
     ports:
       - "127.0.0.1:80:80"
     volumes:
-      - "./files/nginx/nginx.conf:/etc/nginx/nginx.conf"
-      - "./files/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
     logging:
       driver: "fluentd"
       options:

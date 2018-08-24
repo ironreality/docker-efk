@@ -8,4 +8,4 @@
 - name: Start EFK stack via docker-compose
   docker_service:
     docker_host: "tcp://localhost:2375"
-    project_src: ../
+    project_src: ../files
