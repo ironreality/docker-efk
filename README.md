@@ -3,6 +3,8 @@ Role Name
 
 Containerized Elasticsearch+Fluentd+Kibana+Nginx installation
 
+The detailed projects' specification see in TODO file
+
 
 Requirements
 ------------
@@ -45,4 +47,4 @@ BSD
 Author Information
 ------------------
 
-The detailed projects' specification see in TODO file
+(c) Vadym Suzhyk aka Yamato
