@@ -49,4 +49,4 @@ BSD
 Author Information
 ------------------
 
-(c) Vadym Suzhyk aka Yamato
+(c) Vadym Surzhyk aka Yamato
