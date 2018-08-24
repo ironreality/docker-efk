@@ -32,7 +32,9 @@ Example Playbook
 
 The testing playbook & inventory are placed in tests directory. So to run you should fire the command:
 
+```
 ansible-playbook tests/test.yml -i tests/inventory --connection=local --become
+```
 
 
 License
