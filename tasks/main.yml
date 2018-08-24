@@ -1,11 +1,6 @@
 ---
 # tasks file for docker-efk
-- name: Test docker install by pulling hello world image
-  docker_image:
-    docker_host: "tcp://localhost:2375"
-    name: hello-world
-
-- name: Start EFK stack via docker-compose
+- name: Start EFK+Nginx stack via docker-compose
   docker_service:
     docker_host: "tcp://localhost:2375"
     project_src: ../files
