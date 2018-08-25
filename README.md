@@ -37,7 +37,14 @@ Example Playbook
 The testing playbook & inventory are placed in tests directory. So to run you should fire the command:
 
 ```
+cd <repo_directory>
 ansible-playbook tests/test.yml -i tests/inventory --connection=local --become
+```
+
+or you can test the role with Vagrant - you need to have Vagrant+VirtualBox installed in such case:
+```
+cd <repo_directory>
+vagrant up
 ```
 
 
