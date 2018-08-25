@@ -11,13 +11,13 @@ The detailed projects' specification see in TODO file
 Requirements
 ------------
 
-- the role is tested on Linux Ubuntu 16.04 on my laptop & on Ubuntu 14.04 via TravisCI
+- the role is tested on Linux Ubuntu 16.04 via Vagrant & on Ubuntu 14.04 via TravisCI
 - Docker daemon is running & listening socket localhost:2375
 - Ansible version >= 2.6 installed
 - docker-compose == 1.9 (newer versions can work unstable with the Ansible docker-related modules)
 - sudo sysctl -w vm.max_map_count = 262144 # to run Elasticsearch 6.4
 
-**A detailed description of the prerequisites you can find in .travis.yml**
+**A detailed description of the pre-configuration steps you can find in the Vagrantfile or in .travis.yml**
 
 
 Role Variables

@@ -4,3 +4,19 @@
   docker_service:
     docker_host: "tcp://localhost:2375"
     project_src: ../files
+
+# Tests
+- name: Wait until Kibana is accessible
+  command: "curl --silent http://localhost:5601"
+  register: result
+  until: result.stdout.find("<script>") != -1
+  retries: 30
+  delay: 10
+  changed_when: false
+
+- name: Check Kibana url through Nginx
+  uri:
+    url: http://localhost/
+    user: "{{ lookup('env', 'HTTP_AUTH_LOGIN')  | default('admin', true) }}"
+    password: "{{ lookup('env', 'HTTP_AUTH_PASS')  | default('admin', true) }}"
+    return_content: yes

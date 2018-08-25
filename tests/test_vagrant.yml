@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  connection: docker
+  roles:
+    - docker-efk
