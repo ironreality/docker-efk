@@ -5,6 +5,10 @@ Role Name
 
 Containerized Elasticsearch+Fluentd+Kibana+Nginx installation
 
+The Kibana URL: http://localhost
+Kibana default login / pass: admin / admin
+
+
 The detailed projects' specification see in TODO file
 
 

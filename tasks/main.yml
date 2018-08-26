@@ -14,9 +14,20 @@
   delay: 10
   changed_when: false
 
+- name: Wait until Fluentd is accessible
+  wait_for:
+    host: localhost
+    port: 24224 
+
 - name: Check Kibana url through Nginx
   uri:
     url: http://localhost/
     user: "{{ lookup('env', 'HTTP_AUTH_LOGIN')  | default('admin', true) }}"
     password: "{{ lookup('env', 'HTTP_AUTH_PASS')  | default('admin', true) }}"
     return_content: yes
+
+- debug:
+    msg:
+      - "The EFK+Nginx stack is started"
+      - "The Kibana URL: http://localhost"
+      - "The default Kibana login / pass: admin / admin"
